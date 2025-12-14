@@ -1,0 +1,551 @@
+"use client";
+
+import React, { useState } from "react";
+import styled from "styled-components";
+import { Container, Row, Col } from "react-bootstrap";
+import { useForm, Controller } from "react-hook-form";
+import Select, { components } from "react-select";
+import Button from "../Button";
+import { hover, Transition } from "../../styles/globalStyleVars";
+import RotateSvg from "./RotateSvg";
+
+const ContactForm = () => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+    reset,
+  } = useForm({
+    defaultValues: {
+      name: "",
+      email: "",
+      service: null,
+      timeline: null,
+      description: "",
+    },
+  });
+
+  const onSubmit = async (data) => {
+    setIsSubmitting(true);
+
+    // Simulate API call
+    setTimeout(() => {
+      setIsSubmitting(false);
+      reset(); // Reset form after submission
+    }, 2000);
+  };
+
+  const serviceOptions = [
+    { value: "web-development", label: "Web Development" },
+    { value: "ui-ux-design", label: "UI/UX Design" },
+    { value: "mobile-app-development", label: "Mobile App Development" },
+    { value: "branding-identity", label: "Branding & Identity" },
+    { value: "digital-marketing", label: "Digital Marketing" },
+    { value: "ecommerce-solutions", label: "E-commerce Solutions" },
+    {
+      value: "custom-software-development",
+      label: "Custom Software Development",
+    },
+    { value: "other", label: "Other" },
+  ];
+
+  const timelineOptions = [
+    { value: "asap", label: "ASAP" },
+    { value: "1-2-weeks", label: "1-2 weeks" },
+    { value: "1-month", label: "1 month" },
+    { value: "2-3-months", label: "2-3 months" },
+    { value: "3-6-months", label: "3-6 months" },
+    { value: "6-plus-months", label: "6+ months" },
+    { value: "flexible", label: "Flexible" },
+  ];
+
+  // Custom dropdown indicator component
+  const DropdownIndicator = (props) => {
+    return (
+      <components.DropdownIndicator {...props}>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="12"
+          height="8"
+          viewBox="0 0 12 8"
+          fill="none"
+          style={{
+            transform: props.selectProps.menuIsOpen
+              ? "rotate(180deg)"
+              : "rotate(0deg)",
+            transition: "transform 0.3s ease",
+          }}
+        >
+          <path
+            d="M11.4928 0.828966C11.8634 1.1019 11.9426 1.62356 11.6696 1.99414C11.4576 2.28198 11.2456 2.55559 11.0596 2.7939C10.6884 3.26962 10.1773 3.90673 9.62197 4.54628C9.07027 5.18169 8.45857 5.83858 7.8875 6.34316C7.60291 6.59461 7.30879 6.82585 7.02198 6.99875C6.75805 7.15787 6.39538 7.33325 5.99861 7.33325C5.60184 7.33325 5.23915 7.15787 4.97521 6.99875C4.6884 6.82585 4.39428 6.59461 4.10969 6.34316C3.53862 5.83858 2.92692 5.18169 2.37522 4.54628C1.81993 3.90673 1.30883 3.26962 0.937566 2.7939C0.751591 2.55559 0.539552 2.28198 0.327558 1.99414C0.0546291 1.62356 0.133789 1.1019 0.504368 0.828967C0.653332 0.719255 0.826719 0.666445 0.998549 0.666589L5.9986 0.666589L10.9986 0.666589C11.1705 0.666444 11.3439 0.719254 11.4928 0.828966Z"
+            fill="#071D21"
+          />
+        </svg>
+      </components.DropdownIndicator>
+    );
+  };
+
+  // Custom select styles
+  const customSelectStyles = {
+    control: (provided, state) => ({
+      ...provided,
+      width: "100%",
+      padding: "0px",
+      border: "1px solid rgba(7, 29, 33, 0.08)",
+      borderRadius: "100px",
+      background: "transparent",
+      fontSize: "16px",
+      color: "#071D21",
+      cursor: "pointer",
+      // minHeight: '56px', // Match input field height
+      // height: '56px',
+      display: "flex",
+      alignItems: "center",
+      boxShadow: state.isFocused ? `0 0 0 1px ${hover}` : "none",
+      "&:hover": {
+        boxShadow: `0 0 0 1px ${hover}`,
+      },
+    }),
+    valueContainer: (provided) => ({
+      ...provided,
+      padding: "0 20px",
+      // minHeight: '54px',
+      // height: '54px',
+      display: "flex",
+      alignItems: "center",
+    }),
+    placeholder: (provided) => ({
+      ...provided,
+      color: "#999",
+      fontSize: "16px",
+      margin: "0",
+      position: "absolute",
+    }),
+    singleValue: (provided) => ({
+      ...provided,
+      color: "#071D21",
+      fontSize: "16px",
+      margin: "0",
+      position: "absolute",
+    }),
+    menu: (provided) => ({
+      ...provided,
+      borderRadius: "16px",
+      border: "none",
+      boxShadow: "0 8px 24px rgba(0, 0, 0, 0.1)",
+      overflow: "hidden",
+    }),
+    option: (provided, state) => ({
+      ...provided,
+      backgroundColor: state.isSelected
+        ? "#071D21"
+        : state.isFocused
+          ? "#F5F5F5"
+          : "#FFF",
+      color: state.isSelected ? "#FFF" : "#071D21",
+      padding: "12px 20px",
+      cursor: "pointer",
+      fontSize: "16px",
+      "&:hover": {
+        backgroundColor: state.isSelected ? "#071D21" : "#F5F5F5",
+      },
+    }),
+    indicatorSeparator: () => ({
+      display: "none",
+    }),
+    dropdownIndicator: (provided) => ({
+      ...provided,
+      padding: "0 20px",
+      display: "flex",
+      alignItems: "center",
+    }),
+    input: (provided) => ({
+      ...provided,
+      margin: "0",
+      paddingTop: "0",
+      paddingBottom: "0",
+      height: "auto",
+    }),
+  };
+
+  return (
+    <StyledComponent className={"contact-form"}>
+      <div className={"contact-form__wrapper"}>
+        <div className={"contact-form__header"}>
+          <h2 className={"split-up-delay"}>Request A Quote</h2>
+          <div className={"contact-form__close"}>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="22"
+              viewBox="0 0 20 22"
+              fill="none"
+            >
+              <path
+                d="M14.791 19.0835L5.45767 2.91767"
+                stroke="#071D21"
+                strokeWidth="1.7"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+              <path
+                d="M16.9272 11.1151C16.9272 11.1151 16.1233 18.315 14.792 19.0836C13.4608 19.8522 6.82357 16.9484 6.82357 16.9484"
+                stroke="#071D21"
+                strokeWidth="1.7"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </div>
+        </div>
+
+        <form
+          onSubmit={handleSubmit(onSubmit)}
+          className={"contact-form__form"}
+        >
+          <div className={"form-group"}>
+            <label className={"split-up-delay"} htmlFor="name">
+              Name
+            </label>
+            <Controller
+              name="name"
+              control={control}
+              rules={{ required: "Name is required" }}
+              render={({ field }) => (
+                <input
+                  {...field}
+                  type="text"
+                  id="name"
+                  placeholder="Your full name"
+                  className={errors.name ? "error" : ""}
+                />
+              )}
+            />
+            {errors.name && (
+              <span className="error-message">{errors.name.message}</span>
+            )}
+          </div>
+
+          <div className={"form-group"}>
+            <label className={"split-up-delay"} htmlFor="email">
+              Email Address
+            </label>
+            <Controller
+              name="email"
+              control={control}
+              rules={{
+                required: "Email is required",
+                pattern: {
+                  value: /^\S+@\S+$/i,
+                  message: "Invalid email address",
+                },
+              }}
+              render={({ field }) => (
+                <input
+                  {...field}
+                  type="email"
+                  id="email"
+                  placeholder="Enter your email"
+                  className={errors.email ? "error" : ""}
+                />
+              )}
+            />
+            {errors.email && (
+              <span className="error-message">{errors.email.message}</span>
+            )}
+          </div>
+
+          <div className={"form-group"}>
+            <label className={"split-up-delay"} htmlFor="service">
+              Select Service
+            </label>
+            <Controller
+              name="service"
+              control={control}
+              rules={{ required: "Please select a service" }}
+              render={({ field }) => (
+                <Select
+                  {...field}
+                  options={serviceOptions}
+                  placeholder="What Services Do You Need?"
+                  styles={customSelectStyles}
+                  components={{ DropdownIndicator }}
+                  className={errors.service ? "react-select-error" : ""}
+                  isSearchable={false}
+                />
+              )}
+            />
+            {errors.service && (
+              <span className="error-message">{errors.service.message}</span>
+            )}
+          </div>
+
+          <div className={"form-group"}>
+            <label className={"split-up-delay"} htmlFor="timeline">
+              Timeline
+            </label>
+            <Controller
+              name="timeline"
+              control={control}
+              rules={{ required: "Please select a timeline" }}
+              render={({ field }) => (
+                <Select
+                  {...field}
+                  options={timelineOptions}
+                  placeholder="What's Your Timeline?"
+                  styles={customSelectStyles}
+                  components={{ DropdownIndicator }}
+                  className={errors.timeline ? "react-select-error" : ""}
+                  isSearchable={false}
+                />
+              )}
+            />
+            {errors.timeline && (
+              <span className="error-message">{errors.timeline.message}</span>
+            )}
+          </div>
+
+          <div className={"form-group"}>
+            <label className={"split-up-delay"} htmlFor="description">
+              Description
+            </label>
+            <Controller
+              name="description"
+              control={control}
+              rules={{ required: "Description is required" }}
+              render={({ field }) => (
+                <textarea
+                  {...field}
+                  id="description"
+                  placeholder="Tell us about your company and what you are looking for..."
+                  rows={5}
+                  className={errors.description ? "error" : ""}
+                />
+              )}
+            />
+            {errors.description && (
+              <span className="error-message">
+                {errors.description.message}
+              </span>
+            )}
+          </div>
+
+          <div className={"form-submit"}>
+            <Button
+              text={isSubmitting ? "Sending..." : "Send Message"}
+              background={"#071D21"}
+              width={"100%"}
+              color={"#fff"}
+              type="submit"
+              disabled={isSubmitting}
+            />
+          </div>
+
+          <div className={"form-alternative"}>
+            <p>
+              Not Interested to submit the form?{" "}
+              <a href="tel:+1234567890">Book A Call Directly</a>
+            </p>
+          </div>
+        </form>
+      </div>
+    </StyledComponent>
+  );
+};
+
+const StyledComponent = styled.section`
+  .contact-form {
+    &__wrapper {
+      padding: 0;
+      overflow: hidden;
+    }
+
+    &__header {
+      background: #fff;
+      border-radius: 30px;
+      padding: 25px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid #f0f0f0;
+
+      h2 {
+        font-weight: 700;
+        color: #071d21;
+        margin: 0;
+        font-size: 24px;
+      }
+
+      &__close {
+        cursor: pointer;
+        padding: 5px;
+        border-radius: 50%;
+        transition: background 0.3s ${Transition};
+
+        &:hover {
+          background: #f5f5f5;
+        }
+      }
+    }
+
+    &__form {
+      padding: 25px;
+      border-radius: 30px;
+      background: #f5f5f5;
+
+      .form-group {
+        margin-bottom: 30px;
+
+        label {
+          display: block;
+          font-weight: 500;
+          color: #071d21;
+          margin-bottom: 15px;
+          font-size: 18px;
+        }
+
+        input,
+        textarea {
+          width: 100%;
+          padding: 20px;
+          border-radius: 100px;
+          border: 1px solid rgba(7, 29, 33, 0.08);
+          font-size: 16px;
+          color: #071d21;
+          background: transparent;
+          transition: box-shadow 0.3s ${Transition};
+
+          &::placeholder {
+            color: #999;
+          }
+
+          &:focus {
+            outline: none;
+            box-shadow: 0 0 0 1px ${hover};
+          }
+
+          &.error {
+            box-shadow: 0 0 0 2px rgba(220, 53, 69, 0.3);
+          }
+        }
+
+        textarea {
+          resize: vertical;
+          min-height: 120px;
+          font-family: inherit;
+          border-radius: 25px;
+        }
+
+        .error-message {
+          color: #dc3545;
+          font-size: 14px;
+          margin-top: 4px;
+          display: block;
+        }
+
+        .react-select-error {
+          .select__control {
+            border: 1px solid #dc3545 !important;
+            box-shadow: 0 0 0 2px rgba(220, 53, 69, 0.3) !important;
+
+            &:hover {
+              border: 1px solid #dc3545 !important;
+            }
+          }
+        }
+      }
+
+      .form-submit {
+        margin: 30px 0 20px 0;
+
+        .dc-btn {
+          a {
+            width: 100%;
+          }
+        }
+      }
+
+      .form-alternative {
+        text-align: center;
+        padding-top: 20px;
+        border-top: 1px solid #e5e5e5;
+
+        p {
+          color: #666;
+          margin: 0;
+          font-size: 16px;
+
+          a {
+            color: #071d21;
+            text-decoration: underline;
+            font-weight: 700;
+            transition: color 0.3s ${Transition};
+
+            &:hover {
+              color: #000;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  @media (max-width: 768px) {
+    .contact-form {
+      &__header {
+        padding: 20px;
+
+        h2 {
+          font-size: 20px;
+        }
+      }
+
+      &__form {
+        padding: 20px;
+
+        .form-group {
+          margin-bottom: 20px;
+
+          label {
+            font-size: 17px;
+            margin-bottom: 6px;
+          }
+
+          input,
+          textarea {
+            font-size: 16px;
+          }
+        }
+
+        .form-submit {
+          margin: 24px 0 16px 0;
+
+          button {
+            padding: 14px 16px !important;
+            font-size: 17px;
+          }
+        }
+      }
+    }
+  }
+  @media (max-width: 767px) {
+    .contact-form {
+      &__header {
+        border-radius: 20px;
+      }
+
+      &__form {
+        border-radius: 20px;
+        padding: 20px 15px;
+      }
+    }
+    .contact-form__form .form-group textarea,
+    .contact-form__form .form-group input {
+      padding: 15px;
+    }
+  }
+`;
+
+export default ContactForm;
