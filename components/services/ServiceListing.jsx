@@ -51,14 +51,26 @@ const ServiceList = () => {
     );
 
     if (typeof window !== "undefined" && window.innerWidth >= 768) {
-      gsap.to(col4Element, {
-        scrollTrigger: {
-          trigger: col4Element,
-          start: "top 0",
-          end: () => `+=${rightWrapperElement?.offsetHeight - col4Element?.offsetHeight}`,
-          pin: true,
-          pinSpacing: false,
-        },
+      // Use requestAnimationFrame to ensure DOM is fully painted
+      requestAnimationFrame(() => {
+        gsap.to(col4Element, {
+          scrollTrigger: {
+            trigger: col4Element,
+            start: "top 0",
+            end: () => {
+              const endValue = rightWrapperElement?.offsetHeight - col4Element?.offsetHeight;
+              return `+=${endValue}`;
+            },
+            pin: true,
+            pinSpacing: false,
+            invalidateOnRefresh: true,
+          },
+        });
+
+        // Refresh ScrollTrigger after a short delay to recalculate positions
+        setTimeout(() => {
+          ScrollTrigger.refresh();
+        }, 100);
       });
     }
 

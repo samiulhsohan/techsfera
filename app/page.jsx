@@ -1,5 +1,5 @@
-import Fonts from "../components/Fonts";
 import Banner from "../components/home/Banner";
+import Footer from "../components/home/Footer";
 import MobileBannerTop from "../components/home/MobileBannerTop";
 
 
@@ -16,8 +16,9 @@ export default async function HomePage() {
 
     return (
         <main>
-            <MobileBannerTop marginTop={'78px'}/>
-            <Banner/>
+            <MobileBannerTop marginTop={'78px'} />
+            <Banner />
+            <Footer />
         </main>
     );
 }

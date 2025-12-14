@@ -33,57 +33,7 @@ const services = [
     number: "(05)",
     title: "Can you redesign an existing product?",
     desc: "Absolutely. We can audit your current site or app, giving it a visual refresh and a technical upgrade to improve performance and conversion.",
-  },
-  {
-    number: "(01)",
-    title: "How do your designers and developers work together?",
-    desc: "Seamlessly. They collaborate from day one, ensuring the beautiful interface we design is technically feasible and the code stays true to the vision.",
-  },
-  {
-    number: "(02)",
-    title: "Do I own the source code and design files?",
-    desc: "Yes, 100%. Upon completion, you receive full ownership of all IP, source code (GitHub), and open design files (Figma).",
-  },
-  {
-    number: "(03)",
-    title: "How do you handle time zones?",
-    desc: "We turn it into an advantage. We overlap our hours with yours for meetings, then focus on deep work while you sleep, so you wake up to progress.",
-  },
-  {
-    number: "(04)",
-    title: "Do you use templates?",
-    desc: `No. We build custom solutions. Your design is crafted for your brand, and your code is architected specifically for your business logic.`,
-  },
-  {
-    number: "(05)",
-    title: "Can you redesign an existing product?",
-    desc: "Absolutely. We can audit your current site or app, giving it a visual refresh and a technical upgrade to improve performance and conversion.",
-  },
-  {
-    number: "(01)",
-    title: "How do your designers and developers work together?",
-    desc: "Seamlessly. They collaborate from day one, ensuring the beautiful interface we design is technically feasible and the code stays true to the vision.",
-  },
-  {
-    number: "(02)",
-    title: "Do I own the source code and design files?",
-    desc: "Yes, 100%. Upon completion, you receive full ownership of all IP, source code (GitHub), and open design files (Figma).",
-  },
-  {
-    number: "(03)",
-    title: "How do you handle time zones?",
-    desc: "We turn it into an advantage. We overlap our hours with yours for meetings, then focus on deep work while you sleep, so you wake up to progress.",
-  },
-  {
-    number: "(04)",
-    title: "Do you use templates?",
-    desc: `No. We build custom solutions. Your design is crafted for your brand, and your code is architected specifically for your business logic.`,
-  },
-  {
-    number: "(05)",
-    title: "Can you redesign an existing product?",
-    desc: "Absolutely. We can audit your current site or app, giving it a visual refresh and a technical upgrade to improve performance and conversion.",
-  },
+  }
 ];
 
 const ServiceAccordion = () => {
@@ -101,14 +51,26 @@ const ServiceAccordion = () => {
     const rightWrapperElement = document.querySelector(".accordion-wrapper");
 
     if (typeof window !== "undefined" && window.innerWidth >= 768) {
-      gsap.to(col4Element, {
-        scrollTrigger: {
-          trigger: col4Element,
-          start: "top 0",
-          end: () => `+=${rightWrapperElement?.offsetHeight - col4Element?.offsetHeight}`,
-          pin: true,
-          pinSpacing: false,
-        },
+      // Use requestAnimationFrame to ensure DOM is fully painted
+      requestAnimationFrame(() => {
+        gsap.to(col4Element, {
+          scrollTrigger: {
+            trigger: col4Element,
+            start: "top 0",
+            end: () => {
+              const endValue = rightWrapperElement?.offsetHeight - col4Element?.offsetHeight;
+              return `+=${endValue}`;
+            },
+            pin: true,
+            pinSpacing: false,
+            invalidateOnRefresh: true,
+          },
+        });
+
+        // Refresh ScrollTrigger after a short delay to recalculate positions
+        setTimeout(() => {
+          ScrollTrigger.refresh();
+        }, 100);
       });
     }
 

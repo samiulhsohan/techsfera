@@ -1,11 +1,11 @@
 "use client";
 
-import React, { useState, useRef, useEffect } from "react";
+import { gsap } from "gsap";
+import { useEffect, useRef, useState } from "react";
+import { Col, Container, Row } from "react-bootstrap";
 import styled from "styled-components";
-import { Container, Row, Col } from "react-bootstrap";
 import { hover, Transition } from "../../styles/globalStyleVars";
 import { ImgParallax } from "../ImgParallax";
-import { gsap } from "gsap";
 
 const Banner = () => {
   // Array of media items (images and videos)
@@ -15,6 +15,8 @@ const Banner = () => {
       thumb: "/images/dynamic/home/banner-ethernest.png",
       icon: "/images/dynamic/home/icon-ethernest.svg",
       type: "video",
+      background: "#F5F5F5",
+      hover_background: "#FFE8D3",
     },
     {
       src: "/images/dynamic/home/banner-taskflow.png",
@@ -28,6 +30,13 @@ const Banner = () => {
       icon: "/images/dynamic/home/icon-lumora.svg",
       background: "#F5F5F5",
       hover_background: "#DBE7FF",
+      type: "image",
+    },
+    {
+      src: "/images/dynamic/home/ethernest.png",
+      icon: "/images/dynamic/home/ethernest.svg",
+      background: "#F5F5F5",
+      hover_background: "#FFF4D6",
       type: "image",
     },
     {
@@ -280,9 +289,8 @@ const Banner = () => {
 
                       <div
                         ref={(el) => (playContainerRefs.current[idx] = el)}
-                        className={`play-svg ${
-                          playActive[idx] ? "active" : ""
-                        }`}
+                        className={`play-svg ${playActive[idx] ? "active" : ""
+                          }`}
                         style={{ cursor: "pointer", zIndex: 2 }}
                         onClick={() => {
                           if (!playActive[idx]) {
