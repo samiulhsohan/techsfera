@@ -1,8 +1,8 @@
 "use client";
-import React, { useRef, useEffect } from "react";
-import styled from "styled-components";
 import { gsap } from "gsap";
 import { DrawSVGPlugin } from "gsap/DrawSVGPlugin";
+import { useEffect, useRef } from "react";
+import styled from "styled-components";
 
 // Register the DrawSVG plugin
 gsap.registerPlugin(DrawSVGPlugin);
@@ -12,6 +12,7 @@ const ScrollIcon = () => {
   const circleRef = useRef(null);
   const arrowRef = useRef(null);
   const dotRef = useRef(null);
+  const wrapperRef = useRef(null);
 
   useEffect(() => {
     const tl = gsap.timeline({ repeat: -1, repeatDelay: 1 });
@@ -27,41 +28,78 @@ const ScrollIcon = () => {
       duration: 1.5,
       ease: "power2.inOut"
     })
-    // Animate arrow drawing
-    .to(arrowRef.current, {
-      drawSVG: "100%",
-      duration: 0.8,
-      ease: "power2.inOut"
-    }, "-=0.5")
-    // Animate dot moving down
-    .to(dotRef.current, {
-      drawSVG: "100%",
-      duration: 0.6,
-      ease: "power2.inOut"
-    }, "-=0.3")
-    // Pulse effect
-    .to(svgRef.current, {
-      scale: 1.1,
-      duration: 0.3,
-      ease: "power2.inOut",
-      yoyo: true,
-      repeat: 1
-    }, "-=0.2")
-    // Fade out before repeat
-    .to([circleRef.current, arrowRef.current, dotRef.current], {
-      drawSVG: "0%",
-      duration: 0.5,
-      ease: "power2.inOut"
-    }, "+=0.5");
+      // Animate arrow drawing
+      .to(arrowRef.current, {
+        drawSVG: "100%",
+        duration: 0.8,
+        ease: "power2.inOut"
+      }, "-=0.5")
+      // Animate dot moving down
+      .to(dotRef.current, {
+        drawSVG: "100%",
+        duration: 0.6,
+        ease: "power2.inOut"
+      }, "-=0.3")
+      // Pulse effect
+      .to(svgRef.current, {
+        scale: 1.1,
+        duration: 0.3,
+        ease: "power2.inOut",
+        yoyo: true,
+        repeat: 1
+      }, "-=0.2")
+      // Fade out before repeat
+      .to([circleRef.current, arrowRef.current, dotRef.current], {
+        drawSVG: "0%",
+        duration: 0.5,
+        ease: "power2.inOut"
+      }, "+=0.5");
 
     return () => {
       tl.kill();
     };
   }, []);
 
+  useEffect(() => {
+    const handleScroll = () => {
+      // Calculate distance from bottom
+      const scrollHeight = document.documentElement.scrollHeight;
+      const scrollTop = window.scrollY || document.documentElement.scrollTop;
+      const clientHeight = window.innerHeight;
+      const distanceFromBottom = scrollHeight - (scrollTop + clientHeight);
+
+      // Smoothly transition opacity and position based on distance from bottom
+      if (distanceFromBottom <= 500) {
+        gsap.to(wrapperRef.current, {
+          opacity: 0,
+          y: 50,
+          duration: 0.3,
+          ease: "power2.out"
+        });
+      } else {
+        gsap.to(wrapperRef.current, {
+          opacity: 1,
+          y: 0,
+          duration: 0.3,
+          ease: "none"
+        });
+      }
+    };
+
+    // Initial check
+    handleScroll();
+
+    // Add scroll listener
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   return (
     <StyledComponent>
-      <div className="svg-wrapper">
+      <div className="svg-wrapper" ref={wrapperRef}>
         <svg
           ref={svgRef}
           width="60"
@@ -72,20 +110,20 @@ const ScrollIcon = () => {
         >
           {/* Background circle */}
           <rect width="60" height="60" rx="30" fill="#5DC700" />
-          
+
           {/* Mouse/scroll indicator circle */}
-          <rect 
+          <rect
             ref={circleRef}
-            x="22" 
-            y="18" 
-            width="16" 
-            height="24" 
-            rx="8" 
-            stroke="white" 
-            strokeWidth="2" 
+            x="22"
+            y="18"
+            width="16"
+            height="24"
+            rx="8"
+            stroke="white"
+            strokeWidth="2"
             fill="none"
           />
-          
+
           {/* Down arrow */}
           <path
             ref={arrowRef}
@@ -96,7 +134,7 @@ const ScrollIcon = () => {
             strokeLinejoin="round"
             fill="none"
           />
-          
+
           {/* Scrolling dot indicator */}
           <circle
             ref={dotRef}

@@ -13,7 +13,6 @@ export const metadata = {
 
 export default async function HomePage() {
 
-
     return (
         <main>
             <MobileBannerTop marginTop={'78px'} />

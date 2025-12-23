@@ -1,9 +1,8 @@
 "use client";
-import React, { useEffect, useRef, useState } from "react";
-import styled from "styled-components";
-import { Container, Row, Col } from "react-bootstrap";
 import { gsap } from "gsap";
-import Link from "next/link";
+import { useEffect, useRef, useState } from "react";
+import { Col, Container, Row } from "react-bootstrap";
+import styled from "styled-components";
 
 const AboutTop = () => {
   const svgRef = useRef(null);
@@ -249,7 +248,7 @@ const StyledComponent = styled.section`
         font-family: Geist;
         font-size: 20px;
         font-style: normal;
-        font-weight: 500;
+        font-weight: 400;
         line-height: 29px;
       }
     }

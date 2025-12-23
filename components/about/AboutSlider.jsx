@@ -1,10 +1,10 @@
 "use client";
 
-import React, { useEffect, useRef, useState } from "react";
-import styled from "styled-components";
-import { Container, Row, Col } from "react-bootstrap";
-import { Transition, hover } from "../../styles/globalStyleVars";
 import { gsap } from "gsap";
+import { useEffect, useRef, useState } from "react";
+import { Col, Container, Row } from "react-bootstrap";
+import styled from "styled-components";
+import { Transition, hover } from "../../styles/globalStyleVars";
 
 const demoTestimonials = [
   {
@@ -649,6 +649,7 @@ const StyledComponent = styled.section`
         -webkit-box-orient: vertical;
         overflow: hidden;
         text-overflow: ellipsis;
+        line-height: 162%;
       }
     }
 

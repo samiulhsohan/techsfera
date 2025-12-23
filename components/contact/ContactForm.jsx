@@ -1,13 +1,11 @@
 "use client";
 
-import React, { useState } from "react";
-import styled from "styled-components";
-import { Container, Row, Col } from "react-bootstrap";
-import { useForm, Controller } from "react-hook-form";
+import { useState } from "react";
+import { Controller, useForm } from "react-hook-form";
 import Select, { components } from "react-select";
-import Button from "../Button";
+import styled from "styled-components";
 import { hover, Transition } from "../../styles/globalStyleVars";
-import RotateSvg from "./RotateSvg";
+import Button from "../Button";
 
 const ContactForm = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -346,7 +344,7 @@ const ContactForm = () => {
           <div className={"form-alternative"}>
             <p>
               Not Interested to submit the form?{" "}
-              <a href="tel:+1234567890">Book A Call Directly</a>
+              <a href="https://cal.com/techsferahq/30min" target="_blank">Book A Call Directly</a>
             </p>
           </div>
         </form>

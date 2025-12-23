@@ -45,13 +45,13 @@ const Banner = () => {
       type: "video",
       icon: "/images/dynamic/home/icon-mindspace.svg",
     },
-    {
-      src: "/images/dynamic/home/banner-vegmove.png",
-      icon: "/images/dynamic/home/icon-vegmove.svg",
-      background: "#F5F5F5",
-      hover_background: "#E3FFF1",
-      type: "image",
-    },
+    // {
+    //   src: "/images/dynamic/home/banner-vegmove.png",
+    //   icon: "/images/dynamic/home/icon-vegmove.svg",
+    //   background: "#F5F5F5",
+    //   hover_background: "#E3FFF1",
+    //   type: "image",
+    // },
     // {
     //   src: "/images/dynamic/home/banner-booking.png",
     //   icon: "/images/dynamic/home/icon-booking.svg",
