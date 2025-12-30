@@ -9,6 +9,7 @@ import Button from "../Button";
 
 const ContactForm = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState(null); // 'success' | 'error' | null
 
   const {
     control,
@@ -25,14 +26,48 @@ const ContactForm = () => {
     },
   });
 
+  // Encode form data for Netlify submission
+  const encode = (data) => {
+    return Object.keys(data)
+      .map((key) => {
+        const value = data[key];
+        // Handle react-select objects (service and timeline)
+        if (value && typeof value === "object" && value.value) {
+          return (
+            encodeURIComponent(key) + "=" + encodeURIComponent(value.label)
+          );
+        }
+        return encodeURIComponent(key) + "=" + encodeURIComponent(value || "");
+      })
+      .join("&");
+  };
+
   const onSubmit = async (data) => {
     setIsSubmitting(true);
+    setSubmitStatus(null);
 
-    // Simulate API call
-    setTimeout(() => {
+    try {
+      const response = await fetch("/", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: encode({
+          "form-name": "contact",
+          ...data,
+        }),
+      });
+
+      if (response.ok) {
+        setSubmitStatus("success");
+        reset(); // Reset form after successful submission
+      } else {
+        throw new Error("Form submission failed");
+      }
+    } catch (error) {
+      console.error("Form submission error:", error);
+      setSubmitStatus("error");
+    } finally {
       setIsSubmitting(false);
-      reset(); // Reset form after submission
-    }, 2000);
+    }
   };
 
   const serviceOptions = [
@@ -140,8 +175,8 @@ const ContactForm = () => {
       backgroundColor: state.isSelected
         ? "#071D21"
         : state.isFocused
-          ? "#F5F5F5"
-          : "#FFF",
+        ? "#F5F5F5"
+        : "#FFF",
       color: state.isSelected ? "#FFF" : "#071D21",
       padding: "12px 20px",
       cursor: "pointer",
@@ -200,9 +235,23 @@ const ContactForm = () => {
         </div>
 
         <form
+          name="contact"
+          method="POST"
+          data-netlify="true"
+          data-netlify-honeypot="bot-field"
           onSubmit={handleSubmit(onSubmit)}
           className={"contact-form__form"}
         >
+          {/* Hidden input for Netlify form detection in JS-rendered forms */}
+          <input type="hidden" name="form-name" value="contact" />
+          {/* Honeypot field for spam protection - hidden from users */}
+          <p className="hidden-field">
+            <label>
+              Don&apos;t fill this out if you&apos;re human:{" "}
+              <input name="bot-field" />
+            </label>
+          </p>
+
           <div className={"form-group"}>
             <label className={"split-up-delay"} htmlFor="name">
               Name
@@ -341,10 +390,61 @@ const ContactForm = () => {
             />
           </div>
 
+          {/* Success message */}
+          {submitStatus === "success" && (
+            <div className="form-status form-status--success">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                <polyline points="22 4 12 14.01 9 11.01" />
+              </svg>
+              <span>
+                Thank you! Your message has been sent successfully. We&apos;ll
+                get back to you soon.
+              </span>
+            </div>
+          )}
+
+          {/* Error message */}
+          {submitStatus === "error" && (
+            <div className="form-status form-status--error">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <circle cx="12" cy="12" r="10" />
+                <line x1="15" y1="9" x2="9" y2="15" />
+                <line x1="9" y1="9" x2="15" y2="15" />
+              </svg>
+              <span>
+                Oops! Something went wrong. Please try again or contact us
+                directly.
+              </span>
+            </div>
+          )}
+
           <div className={"form-alternative"}>
             <p>
               Not Interested to submit the form?{" "}
-              <a href="https://cal.com/techsferahq/30min" target="_blank">Book A Call Directly</a>
+              <a href="https://cal.com/techsferahq/30min" target="_blank">
+                Book A Call Directly
+              </a>
             </p>
           </div>
         </form>
@@ -392,6 +492,10 @@ const StyledComponent = styled.section`
       padding: 25px;
       border-radius: 30px;
       background: #f5f5f5;
+
+      .hidden-field {
+        display: none;
+      }
 
       .form-group {
         margin-bottom: 30px;
@@ -462,6 +566,54 @@ const StyledComponent = styled.section`
           a {
             width: 100%;
           }
+        }
+      }
+
+      .form-status {
+        display: flex;
+        align-items: flex-start;
+        gap: 12px;
+        padding: 16px 20px;
+        border-radius: 16px;
+        margin-bottom: 20px;
+        font-size: 15px;
+        line-height: 1.5;
+        animation: slideIn 0.3s ease-out;
+
+        svg {
+          flex-shrink: 0;
+          margin-top: 2px;
+        }
+
+        &--success {
+          background: rgba(34, 197, 94, 0.1);
+          border: 1px solid rgba(34, 197, 94, 0.3);
+          color: #166534;
+
+          svg {
+            color: #22c55e;
+          }
+        }
+
+        &--error {
+          background: rgba(239, 68, 68, 0.1);
+          border: 1px solid rgba(239, 68, 68, 0.3);
+          color: #991b1b;
+
+          svg {
+            color: #ef4444;
+          }
+        }
+      }
+
+      @keyframes slideIn {
+        from {
+          opacity: 0;
+          transform: translateY(-10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
         }
       }
 
