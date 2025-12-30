@@ -11,27 +11,6 @@ export const metadata = {
 export default async function HomePage() {
   return (
     <>
-      {/* 
-        Hidden form for Netlify form detection.
-        Netlify parses the pre-rendered HTML at build time to detect forms.
-        This hidden form must have the same name and fields as the JavaScript form.
-      */}
-      <form
-        name="contact"
-        method="POST"
-        data-netlify="true"
-        data-netlify-honeypot="bot-field"
-        hidden
-      >
-        <input type="hidden" name="form-name" value="contact" />
-        <input type="hidden" name="bot-field" />
-        <input type="text" name="name" />
-        <input type="email" name="email" />
-        <input type="text" name="service" />
-        <input type="text" name="timeline" />
-        <textarea name="description"></textarea>
-      </form>
-
       <ContactAll />
       <MobileBannerTop marginTop={"3px"} />
     </>
