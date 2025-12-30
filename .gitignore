@@ -78,3 +78,7 @@ yarn-error.log*
 
 node_modules
 bower_components
+
+# Netlify
+.netlify
+netlify/functions/.netlify
