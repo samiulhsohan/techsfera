@@ -5,7 +5,6 @@ import { Controller, useForm } from "react-hook-form";
 import Select, { components } from "react-select";
 import styled from "styled-components";
 import { hover, Transition } from "../../styles/globalStyleVars";
-import Button from "../Button";
 
 const ContactForm = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -380,14 +379,13 @@ const ContactForm = () => {
           </div>
 
           <div className={"form-submit"}>
-            <Button
-              text={isSubmitting ? "Sending..." : "Send Message"}
-              background={"#071D21"}
-              width={"100%"}
-              color={"#fff"}
+            <button
               type="submit"
+              className="submit-button"
               disabled={isSubmitting}
-            />
+            >
+              {isSubmitting ? "Sending..." : "Send Message"}
+            </button>
           </div>
 
           {/* Success message */}
@@ -562,9 +560,44 @@ const StyledComponent = styled.section`
       .form-submit {
         margin: 30px 0 20px 0;
 
-        .dc-btn {
-          a {
-            width: 100%;
+        .submit-button {
+          width: 100%;
+          padding: 16px 24px;
+          background-color: #071d21;
+          color: #fff;
+          border: none;
+          border-radius: 100px;
+          font-size: 17px;
+          font-weight: 700;
+          font-family: "Bricolage Grotesque", sans-serif;
+          cursor: pointer;
+          position: relative;
+          overflow: hidden;
+          transition: all 0.3s ${Transition};
+          z-index: 1;
+
+          &::before {
+            content: "";
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            height: 100%;
+            background-color: ${hover};
+            transition: top 0.4s ${Transition};
+            z-index: -1;
+            border-radius: 100px;
+          }
+
+          &:hover:not(:disabled) {
+            &::before {
+              top: 0;
+            }
+          }
+
+          &:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
           }
         }
       }
