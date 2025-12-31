@@ -1,6 +1,7 @@
 import ServiceListing from "../../components/services/ServiceListing";
 import ServiceOverview from "../../components/services/ServiceOverview";
 import ServiceAccordion from "../../components/services/ServiceAccordion";
+import Footer from "../../components/home/Footer";
 
 export const metadata = {
   title: {
@@ -16,6 +17,9 @@ export default async function HomePage() {
       <ServiceListing />
       <ServiceOverview />
       <ServiceAccordion />
+      <div style={{ marginTop: "3px" }}>
+        <Footer />
+      </div>
     </>
   );
 }

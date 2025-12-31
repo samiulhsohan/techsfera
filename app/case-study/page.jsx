@@ -1,4 +1,5 @@
 import CaseStudy from "../../components/caseStudy/CaseStudy";
+import Footer from "../../components/home/Footer";
 import MobileBannerTop from "../../components/home/MobileBannerTop";
 
 export const metadata = {
@@ -14,6 +15,9 @@ export default async function HomePage() {
     <>
       <CaseStudy />
       <MobileBannerTop marginTop={"3px"} />
+      <div style={{ marginTop: "3px" }}>
+        <Footer />
+      </div>
     </>
   );
 }

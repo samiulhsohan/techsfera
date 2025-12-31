@@ -1,5 +1,7 @@
 import ContactAll from "../../components/contact/ContactAll";
 import MobileBannerTop from "../../components/home/MobileBannerTop";
+import Footer from "../../components/home/Footer";
+
 export const metadata = {
   title: {
     default: "Contact | TechSfera",
@@ -13,6 +15,9 @@ export default async function HomePage() {
     <>
       <ContactAll />
       <MobileBannerTop marginTop={"3px"} />
+      <div style={{ marginTop: "3px" }}>
+        <Footer />
+      </div>
     </>
   );
 }
