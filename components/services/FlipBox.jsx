@@ -1,15 +1,25 @@
 "use client";
-import React, { useRef } from "react";
-import styled from "styled-components";
 import { gsap } from "gsap";
-import { Container, Row, Col } from "react-bootstrap";
-import Link from "next/link";
 import parse from "html-react-parser";
+import { useEffect, useRef } from "react";
+import styled from "styled-components";
 
-const MyComponent = ({ icon, title, subtitle, desc }) => {
+const MyComponent = ({ icon, title, subtitle, desc, isFlipped = false, isMobile = false }) => {
   const innerRef = useRef(null);
 
+  // Handle auto-flip on mobile
+  useEffect(() => {
+    if (!isMobile || !innerRef.current) return;
+
+    gsap.to(innerRef.current, {
+      rotateY: isFlipped ? 180 : 0,
+      duration: 0.5,
+      ease: "power2.inOut",
+    });
+  }, [isFlipped, isMobile]);
+
   const handleMouseEnter = () => {
+    if (isMobile) return; // Disable hover on mobile
     gsap.to(innerRef.current, {
       rotateY: 180,
       duration: 0.5,
@@ -17,11 +27,24 @@ const MyComponent = ({ icon, title, subtitle, desc }) => {
     });
   };
   const handleMouseLeave = () => {
+    if (isMobile) return; // Disable hover on mobile
     gsap.to(innerRef.current, {
       rotateY: 0,
       duration: 0.5,
       ease: "power2.inOut",
     });
+  };
+
+  const handleTouchStart = (e) => {
+    if (isMobile) {
+      e.preventDefault(); // Prevent touch-to-flip on mobile
+    }
+  };
+
+  const handleTouchEnd = (e) => {
+    if (isMobile) {
+      e.preventDefault(); // Prevent touch-to-flip on mobile
+    }
   };
 
   return (
@@ -30,6 +53,9 @@ const MyComponent = ({ icon, title, subtitle, desc }) => {
         className={"flip-box"}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
+        onTouchStart={handleTouchStart}
+        onTouchEnd={handleTouchEnd}
+        style={{ pointerEvents: isMobile ? 'none' : 'auto' }}
       >
         <div className={"flip-box__inner"} ref={innerRef}>
           <div className={"flip-box__front"}>

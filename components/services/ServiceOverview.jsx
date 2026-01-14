@@ -1,12 +1,37 @@
 "use client";
-import React from "react";
+import { useEffect, useState } from "react";
+import { Col, Container, Row } from "react-bootstrap";
 import styled from "styled-components";
-import { Container, Row, Col } from "react-bootstrap";
-import Link from "next/link";
 import Button from "../Button";
 import FlipBox from "./FlipBox";
 
 const MyComponent = () => {
+  const [activeFlipIndex, setActiveFlipIndex] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    // Check if mobile on mount and resize
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
+  useEffect(() => {
+    if (!isMobile) return;
+
+    // Auto-flip boxes every 3 seconds on mobile
+    const interval = setInterval(() => {
+      setActiveFlipIndex((prev) => (prev + 1) % 3);
+    }, 3000);
+
+    return () => clearInterval(interval);
+  }, [isMobile]);
+
   return (
     <StyledComponent>
       <Container fluid>
@@ -30,6 +55,8 @@ const MyComponent = () => {
                     subtitle={"Defining Project Scope Clearly"}
                     desc={`We align your business goals with technical feasibility upfront. This ensures a clear roadmap with zero surprises and minimizes risk.`}
                     icon={"/images/dynamic/services/flip-box/1.svg"}
+                    isFlipped={isMobile && activeFlipIndex === 0}
+                    isMobile={isMobile}
                   />
                 </Col>
                 <Col lg={4}>
@@ -38,6 +65,8 @@ const MyComponent = () => {
                     subtitle={"Designing And Building Solutions"}
                     desc={`No silos. Our designers and developers collaborate daily, iterating fast to ensure the final product is both beautiful and bug-free.`}
                     icon={"/images/dynamic/services/flip-box/2.svg"}
+                    isFlipped={isMobile && activeFlipIndex === 1}
+                    isMobile={isMobile}
                   />
                 </Col>
                 <Col lg={4}>
@@ -46,6 +75,8 @@ const MyComponent = () => {
                     subtitle={"Ongoing Support After Launch"}
                     desc={`Launch is just the start. We monitor performance, handle updates, and help you add new features as your business grows.`}
                     icon={"/images/dynamic/services/flip-box/3.svg"}
+                    isFlipped={isMobile && activeFlipIndex === 2}
+                    isMobile={isMobile}
                   />
                 </Col>
               </Row>
@@ -102,7 +133,7 @@ const StyledComponent = styled.section`
         font-size: 20px;
         font-style: normal;
         font-weight: 700;
-        line-height: 38px;
+        line-height: 26px;
       }
     }
   }

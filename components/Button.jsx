@@ -160,6 +160,7 @@ const StyledBtn = styled.div`
         margin: auto;
         transition: all 0.5s ${Transition};
         border-radius: 22px;
+        pointer-events: none;
       }
 
       &:hover {

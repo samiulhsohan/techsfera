@@ -48,10 +48,7 @@ export default createGlobalStyle`
     background: #071D21;
     font-size: 16px;
     line-height: 24px;
-      user-select: none;
-  -webkit-user-select: none; 
-  -moz-user-select: none;   
-  -ms-user-select: none;   
+    
   }
 
    #main-wrapper{
@@ -179,7 +176,7 @@ export default createGlobalStyle`
     font-weight: 400;
     line-height: 125%;
       @media (max-width:767px) {
-      font-size: 15px;
+      font-size: 15px!important;
     }
   }
 

@@ -16,7 +16,7 @@ const MobileBannerTop = ({ margin }) => {
                   <h1>
                     Your Vision,
                     <p>Our Expertise</p>
-                    <p>A Perfect Blend</p>
+                    <h6>A Perfect Blend</h6>
                   </h1>
                 </div>
                 <div className={"experience"}>
@@ -151,6 +151,7 @@ const StyledComponent = styled.section`
 
                     font-weight: 700;
                 }
+              
 
                 h6 {
                     text-indent: 20.5vw;
