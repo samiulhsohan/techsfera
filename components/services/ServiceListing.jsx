@@ -293,6 +293,9 @@ const StyledComponent = styled.section`
         border-radius: 20px;
         margin-bottom: -1px;
         padding: 15px;
+        p{
+        font-size: 15px;
+        }
         h3 {
           line-height: 32px;
         }
