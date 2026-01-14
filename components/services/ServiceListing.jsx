@@ -88,13 +88,11 @@ const ServiceList = () => {
                 <div className={"pin-left"}>
                   <div className={"service-list__title"}>
                     <h3 className={"split-up-delay"}>
-                      Here's What We Can Create
+                      Here's What <br /> We Can Create
                     </h3>
                     <p className={"split-up-delay"}>
-                      We don't just design, and we don't just code—we fuse them.
-                      We build digital products where stunning aesthetics meet
-                      powerful engineering. From concept to launch, we ensure
-                      your product looks beautiful and works flawlessly.
+                      From concept to launch, we create engaging experience
+                      that captivate users and deliver impactful results.
                     </p>
                     <Button
                       text={"Start a Project"}
@@ -132,8 +130,8 @@ const ServiceList = () => {
             </Row>
           </Col>
         </Row>
-      </Container>
-    </StyledComponent>
+      </Container >
+    </StyledComponent >
   );
 };
 
@@ -295,6 +293,9 @@ const StyledComponent = styled.section`
         border-radius: 20px;
         margin-bottom: -1px;
         padding: 15px;
+        h3 {
+          line-height: 32px;
+        }
       }
 
       &__wrapper {
@@ -313,6 +314,7 @@ const StyledComponent = styled.section`
             line-height: 30px;
             text-transform: capitalize;
           }
+            
 
           p {
             font-size: 15px;

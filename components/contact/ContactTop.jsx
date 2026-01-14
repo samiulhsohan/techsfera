@@ -26,6 +26,8 @@ const ContactTop = () => {
               }}
             />
             <Button
+              src={'https://wa.me/+8801600000000'}
+              target="_blank"
               text={"Chat with Us"}
               background={"#000"}
               color={"#fff"}
