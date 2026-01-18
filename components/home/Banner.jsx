@@ -11,6 +11,7 @@ const Banner = () => {
   // Array of media items (images and videos)
   const mediaItems = [
     {
+      name: "Ethernest",
       src: "/images/dynamic/home/video-ethernest.mp4",
       thumb: "/images/dynamic/home/banner-ethernest.png",
       icon: "/images/dynamic/home/icon-ethernest.svg",
@@ -19,6 +20,7 @@ const Banner = () => {
       hover_background: "#FFE8D3",
     },
     {
+      name: "TaskFlow",
       src: "/images/dynamic/home/banner-taskflow.png",
       icon: "/images/dynamic/home/icon-taskflow.svg",
       background: "#F5F5F5",
@@ -26,6 +28,7 @@ const Banner = () => {
       type: "image",
     },
     {
+      name: "Lumora",
       src: "/images/dynamic/home/icon-lumora.png",
       icon: "/images/dynamic/home/icon-lumora.svg",
       background: "#F5F5F5",
@@ -33,6 +36,7 @@ const Banner = () => {
       type: "image",
     },
     {
+      name: "Ethernest App",
       src: "/images/dynamic/home/ethernest.png",
       icon: "/images/dynamic/home/ethernest.svg",
       background: "#F5F5F5",
@@ -40,12 +44,14 @@ const Banner = () => {
       type: "image",
     },
     {
+      name: "MindSpace",
       src: "/images/dynamic/home/video-mindspace.mp4",
       thumb: "/images/dynamic/home/banner-mindspace.png",
       type: "video",
       icon: "/images/dynamic/home/icon-mindspace.svg",
     },
     // {
+    //   name: "VegMove",
     //   src: "/images/dynamic/home/banner-vegmove.png",
     //   icon: "/images/dynamic/home/icon-vegmove.svg",
     //   background: "#F5F5F5",
@@ -53,6 +59,7 @@ const Banner = () => {
     //   type: "image",
     // },
     // {
+    //   name: "Booking",
     //   src: "/images/dynamic/home/banner-booking.png",
     //   icon: "/images/dynamic/home/icon-booking.svg",
     //   background: "#F5F5F5",
@@ -60,6 +67,7 @@ const Banner = () => {
     //   type: "image",
     // },
     {
+      name: "Machine Dashboard",
       src: "/images/dynamic/home/banner-machine-dashboard.png",
       icon: "/images/dynamic/home/icon-machine-dashboard.svg",
       background: "#F5F5F5",
@@ -67,6 +75,7 @@ const Banner = () => {
       type: "image",
     },
     {
+      name: "Rogo",
       src: "/images/dynamic/home/banner-rogo.png",
       icon: "/images/dynamic/home/icon-rogo.svg",
       background: "#F5F5F5",
@@ -74,6 +83,7 @@ const Banner = () => {
       type: "image",
     },
     {
+      name: "TechSfera",
       src: "/images/dynamic/home/banner-techsfera.png",
       icon: "/images/dynamic/home/icon-techsfera.svg",
       background: "#F5F5F5",
@@ -348,7 +358,7 @@ const Banner = () => {
                       </div>
 
                       <div className="icon">
-                        <img src={item.icon} alt="icon" />
+                        <img src={item.icon} alt={`${item.name} project icon`} />
                       </div>
                     </div>
                   );
@@ -368,10 +378,10 @@ const Banner = () => {
                       onFocus={() => setHoverIndex(idx)}
                       onBlur={() => setHoverIndex(null)}
                     >
-                      <ImgParallax src={item.src} />
+                      <ImgParallax src={item.src} alt={`${item.name} project preview`} />
                     </div>
                     <div className="icon">
-                      <img src={item.icon} alt="icon" />
+                      <img src={item.icon} alt={`${item.name} project icon`} />
                     </div>
                   </div>
                 );

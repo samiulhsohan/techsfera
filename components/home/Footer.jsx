@@ -75,14 +75,14 @@ const Footer = ({
                   <div className='slider-track'>
                     {[...Array(2)].map((_, index) => (
                       <div key={index} className='slider-content'>
-                        <p>TechSfera © 2025 — All Rights Reserved.</p>
-                        <img src='/images/static/star.svg' alt='star' className='star-icon' />
-                        <p>TechSfera © 2025 — All Rights Reserved.</p>
-                        <img src='/images/static/star.svg' alt='star' className='star-icon' />
-                        <p>TechSfera © 2025 — All Rights Reserved.</p>
-                        <img src='/images/static/star.svg' alt='star' className='star-icon' />
-                        <p>TechSfera © 2025 — All Rights Reserved.</p>
-                        <img src='/images/static/star.svg' alt='star' className='star-icon' />
+                        <p>TechSfera © {new Date().getFullYear()} — All Rights Reserved.</p>
+                        <img src='/images/static/star.svg' alt='Decorative star' className='star-icon' />
+                        <p>TechSfera © {new Date().getFullYear()} — All Rights Reserved.</p>
+                        <img src='/images/static/star.svg' alt='Decorative star' className='star-icon' />
+                        <p>TechSfera © {new Date().getFullYear()} — All Rights Reserved.</p>
+                        <img src='/images/static/star.svg' alt='Decorative star' className='star-icon' />
+                        <p>TechSfera © {new Date().getFullYear()} — All Rights Reserved.</p>
+                        <img src='/images/static/star.svg' alt='Decorative star' className='star-icon' />
                       </div>
                     ))}
                   </div>

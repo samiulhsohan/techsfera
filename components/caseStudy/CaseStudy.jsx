@@ -9,23 +9,24 @@ const caseStudies = [
   {
     title: "Ethernest App",
     image: "/images/dynamic/case-study/ethernest.png",
-    wrapperClass: "left__wrapper",
-    colClass: "left",
-    colProps: { lg: 6 },
+    wrapperClass: "full",
+    colClass: "full",
+    colProps: { lg: 12 },
+    imageWrapperClass: "case-study__image-wrapper big",
     background: "#F5F5F5",
     hoverBackground: "#FFE8D3",
     href: "https://www.behance.net/gallery/227355463/DeFi-App-UIUX-Case-Study-Crypto-Wallet-Finance-App"
   },
-  {
-    title: "Vegmove",
-    image: "/images/dynamic/case-study/vegmove.png",
-    wrapperClass: "right__wrapper",
-    colClass: "right",
-    colProps: { lg: 6 },
-    background: "#F5F5F5",
-    hoverBackground: "#E4FFE9",
-    href: "https://dribbble.com/shots/26351025-Vegmove-Grocery-Delivery-Solution"
-  },
+  // {
+  //   title: "Vegmove",
+  //   image: "/images/dynamic/case-study/vegmove.png",
+  //   wrapperClass: "right__wrapper",
+  //   colClass: "right",
+  //   colProps: { lg: 6 },
+  //   background: "#F5F5F5",
+  //   hoverBackground: "#E4FFE9",
+  //   href: "https://dribbble.com/shots/26351025-Vegmove-Grocery-Delivery-Solution"
+  // },
   // {
   //   title: "Lumara AI",
   //   image: "/images/dynamic/case-study/lumara.png",
@@ -165,7 +166,7 @@ const CaseStudy = () => {
                         hoverBackground={item.hoverBackground}
                         big={!!item.imageWrapperClass}
                       >
-                        <Img src={item.image} alt={"logo"} />
+                        <Img src={item.image} alt={`${item.title} case study preview`} />
                       </CaseStudyImageWrapper>
                     </div>
                   </Link>

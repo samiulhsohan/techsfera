@@ -62,19 +62,19 @@ const DesktopMenu = () => {
                 <div className={"logo"}>
                   {pathname === "/" || pathname === "" ? (
                     <div onClick={handleLogoClick} style={{ cursor: "pointer" }}>
-                      <img src={"/images/static/menu_logo.svg"} alt={"logo"} />
+                      <img src={"/images/static/menu_logo.svg"} alt={"TechSfera logo"} />
                     </div>
                   ) : (
                     <CustomLink href={"/"}>
-                      <img src={"/images/static/menu_logo.svg"} alt={"logo"} />
+                      <img src={"/images/static/menu_logo.svg"} alt={"TechSfera logo"} />
                     </CustomLink>
                   )}
                 </div>
                 <div className={"title"}>
-                  <h1>
+                  <p className="tagline">
                     Your Vision,
                     <br /> <span>Our Expertise</span> <br /> A Perfect Blend
-                  </h1>
+                  </p>
                 </div>
                 <div className={"experience-wrapper"}>
                   <div className={"experience"}>
@@ -156,40 +156,44 @@ const DesktopMenu = () => {
                       className={"icon"}
                       href={"https://dribbble.com/techsferahq"}
                       target={"_blank"}
+                      rel="noopener noreferrer"
                     >
                       <img
                         src={"/images/dynamic/menu/social_1.svg"}
-                        alt={"dribbble"}
+                        alt={"Dribbble"}
                       />
                     </a>
                     <a
                       className={"icon behance"}
                       href={"https://www.behance.net/TechSferaHQ"}
                       target={"_blank"}
+                      rel="noopener noreferrer"
                     >
                       <img
                         src={"/images/dynamic/menu/social_2.svg"}
-                        alt={"dribbble"}
+                        alt={"Behance"}
                       />
                     </a>
                     <a
                       className={"icon instagram"}
                       href={"https://www.instagram.com/techsferahq/"}
                       target={"_blank"}
+                      rel="noopener noreferrer"
                     >
                       <img
                         src={"/images/dynamic/menu/social_3.svg"}
-                        alt={"dribbble"}
+                        alt={"Instagram"}
                       />
                     </a>
                     <a
                       className={"icon linkedin"}
                       href={"https://www.linkedin.com/company/techsferahq"}
                       target={"_blank"}
+                      rel="noopener noreferrer"
                     >
                       <img
                         src={"/images/dynamic/menu/social_4.svg"}
-                        alt={"dribbble"}
+                        alt={"LinkedIn"}
                       />
                     </a>
                   </div>
@@ -245,8 +249,11 @@ const StyledComponent = styled.section`
         text-align: left;
         margin-bottom: 27px;
 
-        h1 {
+        .tagline {
+          font-size: 32px;
+          line-height: 1.2;
           font-weight: 400;
+          margin: 0;
 
           span {
             font-weight: 700;
@@ -445,7 +452,7 @@ const StyledComponent = styled.section`
 
     @media (min-width: 767px) and (max-width: 1080px) {
       .title {
-        h1 {
+        .tagline {
           font-size: 28px;
         }
       }

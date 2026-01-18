@@ -9,7 +9,7 @@ export const ImgParallax = ({
   src,
   srcSm,
   position,
-  objectFit,
+  objectFit = "contain",
   height,
   width,
   alt,
@@ -33,12 +33,12 @@ export const ImgParallax = ({
     return () => {
       window.removeEventListener("resize", HandleWidth);
     };
-  });
+  }, []);
 
   return (
     <StyledImg
       className="global-image global-image-parallax"
-      objectFit={objectFit}
+      $objectFit={objectFit}
       margin={margin}
       position={position}
       left={left}
@@ -51,10 +51,10 @@ export const ImgParallax = ({
     >
       <Image
         blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQE..."
-        placeholder={"blur"}
-        alt={alt ? alt : src}
-        objectFit={"contain"}
-        layout={"fill"}
+        placeholder="blur"
+        alt={alt ? alt : "Image"}
+        fill
+        style={{ objectFit: objectFit }}
         src={src ? (deviceWidth > 600 ? src : srcSm ? srcSm : src) : blur}
       />
     </StyledImg>
@@ -73,7 +73,6 @@ const StyledImg = styled.div`
   overflow: hidden;
 
   img {
-    ${(props) =>
-      props.transition && `transition: 1.4s ease`}//transition: 1.4s ease;;
+    ${(props) => props.transition && `transition: 1.4s ease`}
   }
 `;

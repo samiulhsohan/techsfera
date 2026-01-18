@@ -1,73 +1,66 @@
-"use client";
-
-import { useGSAP } from "@gsap/react";
-import "bootstrap/dist/css/bootstrap.min.css";
-import { gsap } from "gsap";
-import { ScrollSmoother } from "gsap/dist/ScrollSmoother";
-import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
-import { usePathname } from "next/navigation";
-import { useEffect } from "react"; // ✅ added useState
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import "../app/global.css";
-import { Parallax } from "../components/animation/Parallax";
-import AnimatedText from "../components/animation/TextAnimation";
-import Footer from "../components/home/Footer";
-import { initLenis } from "../components/hooks/getLenis";
-import DesktopMenu from "../components/Menu";
-import MobileMenu from "../components/MobileMenu";
-import ScrollIcon from "../components/ScrollIcon";
+import ClientLayout from "../components/ClientLayout";
 import FontPreloader from "../FontPreloader";
-import StyledComponentsRegistry from "../lib/registry";
-import GlobalStyle from "../styles/GlobalStyles";
 
-gsap.registerPlugin(ScrollTrigger);
+export const metadata = {
+  metadataBase: new URL("https://techsfera.com"),
+  title: {
+    default: "TechSfera | Digital Product Studio",
+    template: "%s | TechSfera",
+  },
+  description:
+    "TechSfera is a digital product studio building modern software, products, and brands for startups and growing businesses.",
+  keywords: [
+    "digital product studio",
+    "software development",
+    "UI/UX design",
+    "branding",
+    "web development",
+    "mobile app development",
+    "startup",
+    "Bangladesh",
+    "Dhaka",
+  ],
+  authors: [{ name: "TechSfera", url: "https://techsfera.com" }],
+  creator: "TechSfera",
+  publisher: "TechSfera",
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: "https://techsfera.com",
+    siteName: "TechSfera",
+    title: "TechSfera | Digital Product Studio",
+    description:
+      "TechSfera is a digital product studio building modern software, products, and brands for startups and growing businesses.",
+    images: [
+      {
+        url: "/images/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "TechSfera - Digital Product Studio",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "TechSfera | Digital Product Studio",
+    description:
+      "TechSfera is a digital product studio building modern software, products, and brands for startups and growing businesses.",
+    images: ["/images/og-image.png"],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+};
 
 export default function RootLayout({ children }) {
-  const location = usePathname();
-  useGSAP(() => {
-    const lenis = initLenis();
-    const refreshTimeout = setTimeout(() => {
-      ScrollTrigger.refresh();
-    }, 300);
-
-    gsap.utils.toArray(".parallax").forEach((element) => {
-      const speed = element.dataset.speed ?? 0.3;
-
-      gsap.to(element, {
-        y: () => -(window.innerHeight * speed),
-        ease: "none",
-        scrollTrigger: {
-          trigger: element,
-          start: "top bottom",
-          end: "bottom top",
-          scrub: 1,
-        },
-      });
-    });
-
-    return () => clearTimeout(refreshTimeout);
-  }, [location]);
-
-  Parallax();
-  AnimatedText();
-
-  useEffect(() => {
-    const smoother = ScrollSmoother.get();
-    if (smoother) {
-      smoother.scrollTop(0, true);
-    } else {
-      window.scrollTo(0, 0);
-    }
-  }, [location]);
-
-  useEffect(() => {
-    const mainWrapper = document.getElementById("main-wrapper");
-    if (mainWrapper) {
-      gsap.to(mainWrapper, { opacity: 1, delay: 0.3 });
-    }
-  }, [location]);
-
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
@@ -76,19 +69,7 @@ export default function RootLayout({ children }) {
         <FontPreloader />
       </head>
       <body suppressHydrationWarning>
-        <StyledComponentsRegistry>
-          <div id="main-wrapper">
-            <DesktopMenu />
-            <MobileMenu />
-            {location === '/' && <ScrollIcon />}
-            <div id="main-root">
-              <GlobalStyle />
-              <ToastContainer />
-              {children}
-            </div>
-            <Footer />
-          </div>
-        </StyledComponentsRegistry>
+        <ClientLayout>{children}</ClientLayout>
       </body>
     </html>
   );
