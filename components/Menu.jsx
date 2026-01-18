@@ -71,10 +71,10 @@ const DesktopMenu = () => {
                   )}
                 </div>
                 <div className={"title"}>
-                  <p className="tagline">
+                  <h1 className="tagline">
                     Your Vision,
                     <br /> <span>Our Expertise</span> <br /> A Perfect Blend
-                  </p>
+                  </h1>
                 </div>
                 <div className={"experience-wrapper"}>
                   <div className={"experience"}>
