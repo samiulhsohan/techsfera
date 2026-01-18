@@ -1,0 +1,84 @@
+# Netlify Configuration for Next.js
+# https://docs.netlify.com/configure-builds/file-based-configuration/
+
+[build]
+  # Build command - using npm for broader compatibility
+  command = "npm run build"
+  
+  # Directory that contains the deploy-ready HTML files
+  publish = ".next"
+  
+  # Ignore builds on specific conditions (optional)
+  # ignore = "git diff --quiet $CACHED_COMMIT_REF $COMMIT_REF -- ."
+
+# Environment variables for build
+[build.environment]
+  # Node version - Next.js 15 requires Node 18.17+
+  NODE_VERSION = "20"
+  # Skip Next.js telemetry during build
+  NEXT_TELEMETRY_DISABLED = "1"
+
+# Netlify Functions configuration
+[functions]
+  # Directory where serverless functions are stored
+  directory = "netlify/functions"
+
+# Enable the Next.js Runtime Plugin
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
+
+# Headers - Security and caching
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-XSS-Protection = "1; mode=block"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+
+# Cache static assets
+[[headers]]
+  for = "/images/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/fonts/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/_next/static/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# Redirects (add custom redirects here if needed)
+# [[redirects]]
+#   from = "/old-path"
+#   to = "/new-path"
+#   status = 301
+
+# Form processing is enabled by default with data-netlify="true" in HTML
+# No additional configuration needed for forms
+
+# Context-specific configuration for production
+[context.production]
+  command = "npm run build"
+
+[context.production.environment]
+  NODE_ENV = "production"
+
+# Deploy preview configuration
+[context.deploy-preview]
+  command = "npm run build"
+
+# Branch deploy configuration
+[context.branch-deploy]
+  command = "npm run build"
+
+# Dev settings for Netlify Dev (local development)
+[dev]
+  command = "npm run dev"
+  port = 3000
+  targetPort = 3000
+  autoLaunch = false

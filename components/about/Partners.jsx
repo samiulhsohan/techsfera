@@ -18,14 +18,14 @@ const MyComponent = () => {
 
   // Partner images array
   const partnerImages = [
-    { full_path: "/images/dynamic/partners/1.svg", alt: "Partner 1" },
-    { full_path: "/images/dynamic/partners/2.svg", alt: "Partner 2" },
-    { full_path: "/images/dynamic/partners/3.svg", alt: "Partner 3" },
-    { full_path: "/images/dynamic/partners/4.svg", alt: "Partner 4" },
-    { full_path: "/images/dynamic/partners/1.svg", alt: "Partner 5" },
-    { full_path: "/images/dynamic/partners/2.svg", alt: "Partner 6" },
-    { full_path: "/images/dynamic/partners/3.svg", alt: "Partner 7" },
-    { full_path: "/images/dynamic/partners/4.svg", alt: "Partner 8" },
+    { full_path: "/images/dynamic/partners/rogo.svg", alt: "RoGo" },
+    { full_path: "/images/dynamic/partners/bariilizarov.svg", alt: "Bari-Ilizarov Orthopaedic Centre" },
+    { full_path: "/images/dynamic/partners/lenels2.svg", alt: "Lenels2" },
+    { full_path: "/images/dynamic/partners/asami.svg", alt: "ASAMI Bangladeshi" },
+    { full_path: "/images/dynamic/partners/box.svg", alt: "Box" },
+    { full_path: "/images/dynamic/partners/eventbrite.svg", alt: "Eventbrite" },
+    { full_path: "/images/dynamic/partners/sendlime.svg", alt: "SendLime" },
+    { full_path: "/images/dynamic/partners/orcuspay.svg", alt: "OrcusPay" },
   ];
 
   const emblaOptions = { loop: true };
@@ -136,7 +136,7 @@ const MyComponent = () => {
                         {partnerImages?.map((image, index) => (
                           <div className="embla-partners__slide" key={index}>
                             <div className="embla-partners__slide-image">
-                              <img src={image?.full_path} alt={image?.alt} />
+                              <img src={image?.full_path} alt={image?.alt} style={{ width: '100%', height: '45px'}} />
                             </div>
                           </div>
                         ))}
@@ -195,6 +195,8 @@ const StyledComponent = styled.section`
         padding: 22px 0;
         overflow: hidden;
         min-height: 100%;
+        display: flex;
+        align-items: center;
     }
 
     .embla-partners {

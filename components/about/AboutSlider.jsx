@@ -8,38 +8,48 @@ import { Transition, hover } from "../../styles/globalStyleVars";
 
 const demoTestimonials = [
   {
-    name: "Anika Roy",
-    deg: "Head of Marketing, Vegmove",
-    heading: "TechSfera Transformed Our Digital Presence",
+    name: "Prof. Dr. Md. Mofakhkharul Bari",
+    deg: "Chief Consultant, Bari-Ilizarov Orthopaedic Centre",
+    heading: "Finally, a Portal Patients Actually Use",
     feedback:
-      "Collaborating with TechSfera was a seamless experience. Their team not only delivered a visually stunning app but also ensured it was highly functional and user-friendly. Their creativity and attention to detail exceeded our expectations.",
-    image: "/images/dynamic/about/slider/review-1.png",
+      "Patients kept calling instead of booking online. Staff wasted hours on data entry. TechSfera fixed all of it. Not the cheapest, but the time we save daily? Worth every taka.",
+    image: "/images/dynamic/about/slider/bari.jpeg",
     type: "image",
     bg_left: "#F6F6F6",
-    bg_right: "#FFE8D3",
+    bg_right: "#E8F5E8",
   },
   {
-    name: "Rafi Ahmed",
-    deg: "CEO, FinTech Solutions",
-    heading: "Innovative Solutions and Exceptional Service",
+    name: "Nadia Chowdhury",
+    deg: "Operations Lead, RoGo",
+    heading: "They Pushed Back When We Were Wrong",
     feedback:
-      "TechSfera's expertise in software development is unparalleled. They took the time to understand our unique needs and delivered a solution that perfectly aligned with our business goals. Their commitment to quality and customer satisfaction is truly commendable.",
-    image: "/images/dynamic/home/demo-video.mp4",
-    type: "video",
-    thumb: "/images/dynamic/home/about_thumb.png",
-    bg_left: "#F6F6F6",
-    bg_right: "#FFE8D3",
-  },
-  {
-    name: "Maya Sen",
-    deg: "Product Manager, HealthPlus",
-    heading: "A Reliable Partner for Our Tech Needs",
-    feedback:
-      "From start to finish, TechSfera demonstrated professionalism and technical prowess. Their team was responsive, collaborative, and proactive in addressing challenges. The end product not only met but exceeded our expectations, driving significant value for our users.",
-    image: "/images/dynamic/about/slider/review-1.png",
+      "Other agencies just said yes to everything. TechSfera actually challenged our bad ideas. Our tracking system handles 3x more orders now. Wish we'd found them sooner.",
+    image: "/images/dynamic/about/slider/nadia.png",
     type: "image",
     bg_left: "#F6F6F6",
-    bg_right: "#FFE8D3",
+    bg_right: "#D4E8FF",
+  },
+  {
+    name: "Tasnim Akter",
+    deg: "Co-founder, SendLime",
+    heading: "11 Weeks, 3 Pivots, Still Delivered",
+    feedback:
+      "We changed direction three times mid-project. Most teams would've bailed. They stayed, adapted, and now our API handles 2M+ requests a day. Can't ask for more.",
+    image: "/images/dynamic/about/slider/tasnim.png",
+    type: "image",
+    bg_left: "#F6F6F6",
+    bg_right: "#FFF0E6",
+  },
+  {
+    name: "Karim Uddin",
+    deg: "CTO, OrcusPay",
+    heading: "Caught Bugs We Didn't Know Existed",
+    feedback:
+      "Hard to find devs who get fintech compliance. Their security review found issues we'd missed for months. Straight shooters too—no sugarcoating when stuff took longer.",
+    image: "/images/dynamic/about/slider/karim.png",
+    type: "image",
+    bg_left: "#F6F6F6",
+    bg_right: "#F0E6FF",
   },
 ];
 
@@ -704,11 +714,12 @@ const StyledComponent = styled.section`
 
       img {
         position: absolute;
-        bottom: 0;
+        top: 0;
         left: 0;
         width: 100%;
         height: 100%;
         object-fit: cover;
+        object-position: top center;
       }
 
       video {
@@ -845,13 +856,14 @@ const StyledComponent = styled.section`
         padding: 0;
         border-radius: 20px;
         &__wrapper {
-          padding-top: calc(180 / 428 * 100%);
+          padding-top: calc(320 / 428 * 100%);
 
           video {
             border-radius: 20px;
           }
           img {
             height: 100%;
+            object-position: top center;
           }
 
           &.video:after {

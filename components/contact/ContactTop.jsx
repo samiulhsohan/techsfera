@@ -17,18 +17,10 @@ const ContactTop = () => {
             achieve your goals and elevate your digital presence.
           </p>
           <div className={"contact-top__wrapper__inner__buttons"}>
-            <img
-              src={"/images/static/whatsapp.svg"}
-              alt={"contact-top"}
-              style={{ cursor: "pointer" }}
-              onClick={() => {
-                window.open("https://wa.me/+8801600000000", "_blank");
-              }}
-            />
             <Button
-              src={'https://wa.me/+8801600000000'}
+              src={'https://cal.com/techsferahq/30min'}
               target="_blank"
-              text={"Chat with Us"}
+              text={"Book a Free Consultation"}
               background={"#000"}
               color={"#fff"}
               margin={"0 0 0 3px"}
