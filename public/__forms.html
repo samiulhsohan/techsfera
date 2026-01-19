@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
   <head>
     <title>Netlify Forms</title>
@@ -8,7 +8,14 @@
     This file is used by Netlify to detect forms at build time.
     It is not visible to users.
   -->
-    <form name="contact" data-netlify="true" hidden>
+    <form
+      name="contact"
+      method="POST"
+      action="/__forms.html"
+      data-netlify="true"
+      netlify-honeypot="bot-field"
+      hidden
+    >
       <input type="hidden" name="form-name" value="contact" />
       <input type="text" name="name" />
       <input type="email" name="email" />
