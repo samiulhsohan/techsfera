@@ -187,7 +187,15 @@ const MobileMenu = () => {
       document.body.classList.add("menu-open");
       gsap.to("#smooth-wrapper", {
         duration: 1.25,
-        transform: "translateY(100%)",
+        transform: "translateY(200%)",
+        ease: "power4.inOut",
+      });
+
+      // Animate menu-container border radius and background
+      gsap.to(".menu-container", {
+        duration: 1.25,
+        borderRadius: "0px",
+        backgroundColor: "rgb(255, 255, 255)",
         ease: "power4.inOut",
       });
 
@@ -195,7 +203,7 @@ const MobileMenu = () => {
       if (mainRoot) {
         gsap.to(mainRoot, {
           duration: 1.25,
-          y: menuHeight,
+          y: menuHeight + 76,
           ease: "power4.inOut",
         });
       }
@@ -209,6 +217,14 @@ const MobileMenu = () => {
       gsap.to("#smooth-wrapper", {
         duration: 1.25,
         transform: "translateY(0%)",
+        ease: "power4.inOut",
+      });
+
+      // Animate menu-container border radius and background back
+      gsap.to(".menu-container", {
+        duration: 1.25,
+        borderRadius: "20px",
+        backgroundColor: "rgb(248, 255, 240)",
         ease: "power4.inOut",
       });
 
@@ -470,13 +486,15 @@ const StyledComponent = styled.section`
   height: unset;
   padding: 0 !important;
   transition: all 0.3s ease;
-  background: #f8fff0;
+  // background: #f8fff0;
   border-radius: 20px;
   overflow: hidden;
 
   .menu-container {
     width: 100%;
     padding: 18px 8px 8px 8px;
+    background: rgb(248, 255, 240);
+    border-radius: 20px;
 
     .menu-bar {
       width: 100%;
@@ -655,15 +673,15 @@ const StyledComponent = styled.section`
   }
 
   .menu-overlay {
-    position: fixed;
+    // position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: fit-content;
     padding: 0;
-    background-color: #fff;
+    background-color: rgb(255, 255, 255);
     overflow: hidden;
-    border-radius: 20px;
+    // border-radius: 20px;
     z-index: 2;
     clip-path: polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%);
 
@@ -709,7 +727,7 @@ const StyledComponent = styled.section`
     }
 
     .menu-copy {
-      padding: 110px 15px 17px 15px;
+      padding: 35px 15px 17px 15px;
 
       .menu-link-item {
         min-width: 100%;
