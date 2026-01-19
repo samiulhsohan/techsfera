@@ -46,7 +46,7 @@ const ContactForm = () => {
     setSubmitStatus(null);
 
     try {
-      const response = await fetch("/__forms.html", {
+      const response = await fetch("/", {
         method: "POST",
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
         body: encode({
@@ -174,8 +174,8 @@ const ContactForm = () => {
       backgroundColor: state.isSelected
         ? "#071D21"
         : state.isFocused
-        ? "#F5F5F5"
-        : "#FFF",
+          ? "#F5F5F5"
+          : "#FFF",
       color: state.isSelected ? "#FFF" : "#071D21",
       padding: "12px 20px",
       cursor: "pointer",
