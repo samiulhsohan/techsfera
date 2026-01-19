@@ -7,13 +7,13 @@ export const metadata = {
   description:
     "Explore TechSfera's services: Branding & Identity, UI/UX Design, and Software Development. From concept to launch, we create engaging experiences that captivate users and deliver impactful results.",
   alternates: {
-    canonical: "https://techsfera.com/services",
+    canonical: "https://techsfera.net/services",
   },
   openGraph: {
     title: "Services | Branding, UI/UX Design & Software Development",
     description:
       "Explore TechSfera's services: Branding & Identity, UI/UX Design, and Software Development.",
-    url: "https://techsfera.com/services",
+    url: "https://techsfera.net/services",
     type: "website",
     images: [
       {

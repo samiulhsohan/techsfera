@@ -2,7 +2,7 @@ import ClientLayout from "../components/ClientLayout";
 import FontPreloader from "../FontPreloader";
 
 export const metadata = {
-  metadataBase: new URL("https://techsfera.com"),
+  metadataBase: new URL("https://techsfera.net"),
   title: {
     default: "TechSfera | Digital Product Studio",
     template: "%s | TechSfera",
@@ -20,13 +20,13 @@ export const metadata = {
     "Bangladesh",
     "Dhaka",
   ],
-  authors: [{ name: "TechSfera", url: "https://techsfera.com" }],
+  authors: [{ name: "TechSfera", url: "https://techsfera.net" }],
   creator: "TechSfera",
   publisher: "TechSfera",
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://techsfera.com",
+    url: "https://techsfera.net",
     siteName: "TechSfera",
     title: "TechSfera | Digital Product Studio",
     description:

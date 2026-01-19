@@ -7,6 +7,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: "/",
       disallow: "/api/",
     },
-    sitemap: "https://techsfera.com/sitemap.xml",
+    sitemap: "https://techsfera.net/sitemap.xml",
   };
 }

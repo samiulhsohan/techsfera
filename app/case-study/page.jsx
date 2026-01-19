@@ -6,13 +6,13 @@ export const metadata = {
   description:
     "Explore TechSfera's portfolio of mobile apps, dashboards, and digital products for startups. See how we transform ideas into engaging digital experiences.",
   alternates: {
-    canonical: "https://techsfera.com/case-study",
+    canonical: "https://techsfera.net/case-study",
   },
   openGraph: {
     title: "Case Studies | Our Work & Portfolio",
     description:
       "Explore TechSfera's portfolio of mobile apps, dashboards, and digital products for startups.",
-    url: "https://techsfera.com/case-study",
+    url: "https://techsfera.net/case-study",
     type: "website",
     images: [
       {

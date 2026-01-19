@@ -6,13 +6,13 @@ export const metadata = {
   description:
     "TechSfera is a digital product studio building modern software, products, and brands for startups and growing businesses. From concept to launch, we create engaging experiences.",
   alternates: {
-    canonical: "https://techsfera.com",
+    canonical: "https://techsfera.net",
   },
   openGraph: {
     title: "TechSfera | Digital Product Studio for Startups & Businesses",
     description:
       "TechSfera is a digital product studio building modern software, products, and brands for startups and growing businesses.",
-    url: "https://techsfera.com",
+    url: "https://techsfera.net",
     type: "website",
     images: [
       {

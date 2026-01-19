@@ -6,13 +6,13 @@ export const metadata = {
   description:
     "Get in touch with TechSfera for your next digital product. Book a free consultation today and let us help you achieve your goals and elevate your digital presence.",
   alternates: {
-    canonical: "https://techsfera.com/contact",
+    canonical: "https://techsfera.net/contact",
   },
   openGraph: {
     title: "Contact Us | Start Your Project with TechSfera",
     description:
       "Get in touch with TechSfera for your next digital product. Book a free consultation today.",
-    url: "https://techsfera.com/contact",
+    url: "https://techsfera.net/contact",
     type: "website",
     images: [
       {

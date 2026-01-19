@@ -9,13 +9,13 @@ export const metadata = {
   description:
     "Learn about TechSfera, a Dhaka-based product studio engineering digital solutions for businesses worldwide. We fuse high-end design with powerful code to build products that drive your business forward.",
   alternates: {
-    canonical: "https://techsfera.com/about",
+    canonical: "https://techsfera.net/about",
   },
   openGraph: {
     title: "About Us | TechSfera - Dhaka-Based Digital Product Studio",
     description:
       "Learn about TechSfera, a Dhaka-based product studio engineering digital solutions for businesses worldwide.",
-    url: "https://techsfera.com/about",
+    url: "https://techsfera.net/about",
     type: "website",
     images: [
       {
