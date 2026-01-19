@@ -174,8 +174,8 @@ const ContactForm = () => {
       backgroundColor: state.isSelected
         ? "#071D21"
         : state.isFocused
-        ? "#F5F5F5"
-        : "#FFF",
+          ? "#F5F5F5"
+          : "#FFF",
       color: state.isSelected ? "#FFF" : "#071D21",
       padding: "12px 20px",
       cursor: "pointer",
@@ -574,7 +574,7 @@ const StyledComponent = styled.section`
           position: relative;
           overflow: hidden;
           transition: all 0.3s ${Transition};
-          z-index: 1;
+     
 
           &::before {
             content: "";
