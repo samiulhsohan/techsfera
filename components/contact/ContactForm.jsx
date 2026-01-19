@@ -46,7 +46,7 @@ const ContactForm = () => {
     setSubmitStatus(null);
 
     try {
-      const response = await fetch("/", {
+      const response = await fetch("/__forms.html", {
         method: "POST",
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
         body: encode({
@@ -55,10 +55,13 @@ const ContactForm = () => {
         }),
       });
 
+      // Netlify returns 200 for successful form submissions
+      // Check for success based on status code
       if (response.ok) {
         setSubmitStatus("success");
         reset(); // Reset form after successful submission
       } else {
+        console.error("Form submission failed with status:", response.status);
         throw new Error("Form submission failed");
       }
     } catch (error) {
