@@ -190,6 +190,12 @@ const StyledBtn = styled.div`
       font-weight: 600;
       }
     }
+
+    @media (max-width: 400px) {
+       span{
+       font-size: 14px;
+       }
+      }
   }
 `;
 

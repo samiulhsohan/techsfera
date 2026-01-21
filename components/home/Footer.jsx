@@ -184,6 +184,10 @@ const StyledComponent = styled.section`
         svg {
           width: 180px;
           height: 100px;
+          @media (max-width: 400px) {
+            width: 150px;
+            height: 100px;
+          }
         }
       }
     }
